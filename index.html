@@ -1,0 +1,717 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070c">
+  <meta name="description" content="呂理聖的個人介紹：醫學、科學思考、健身訓練與創意實踐。">
+  <title>呂理聖｜個人座標</title>
+  <style>
+    /* 全站基礎設定：以黑色、白字和少量冷藍建立沉靜的任務氛圍。 */
+    :root {
+      color-scheme: dark;
+      --ink: #f4f6fb;
+      --muted: #a4adbd;
+      --night: #05070c;
+      --panel: #0c111b;
+      --line: rgba(215, 226, 245, .18);
+      --accent: #9dc7ff;
+      --content: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--night); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--night);
+      font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    button { font: inherit; }
+    img, svg { display: block; max-width: 100%; }
+
+    .skip-link {
+      position: absolute;
+      z-index: 20;
+      top: 1rem;
+      left: 1rem;
+      padding: .75rem 1rem;
+      color: var(--night);
+      background: var(--ink);
+      transform: translateY(-180%);
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .wrap {
+      width: min(var(--content), calc(100% - 3rem));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--accent);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      max-width: 760px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 5.2rem);
+      font-weight: 600;
+      letter-spacing: -.045em;
+      line-height: 1.08;
+    }
+
+    .section-copy {
+      max-width: 600px;
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.6vw, 1.15rem);
+    }
+
+    /* 導覽列透明疊在首屏上；手機用按鈕展開選單，保持版面簡潔。 */
+    .site-header {
+      position: fixed;
+      z-index: 10;
+      inset: 0 0 auto;
+      border-bottom: 1px solid transparent;
+    }
+
+    .nav {
+      display: flex;
+      min-height: 76px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: .7rem;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(255,255,255,.7);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: .65rem;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(1rem, 2.5vw, 2.2rem);
+    }
+
+    .nav-links a {
+      color: #d7dce6;
+      font-size: .76rem;
+      letter-spacing: .12em;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--accent); }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--ink);
+      background: rgba(5, 7, 12, .55);
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin: 5px 0;
+      background: currentColor;
+    }
+
+    /* 首屏以原創 CSS 星塵和 SVG 任務載具剪影呈現主視覺，不依賴外部圖片。 */
+    .hero {
+      position: relative;
+      display: grid;
+      min-height: 100svh;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse at 70% 44%, rgba(52, 81, 127, .35), transparent 36%),
+        radial-gradient(ellipse at 23% 80%, rgba(37, 57, 91, .22), transparent 45%),
+        linear-gradient(155deg, #101827 0%, #080b12 48%, #030408 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero::before {
+      opacity: .48;
+      background-image:
+        radial-gradient(1px 1px at 12% 21%, #fff 99%, transparent),
+        radial-gradient(1px 1px at 38% 14%, #cbdcff 99%, transparent),
+        radial-gradient(1px 1px at 80% 18%, #fff 99%, transparent),
+        radial-gradient(1px 1px at 91% 60%, #d7e5ff 99%, transparent),
+        radial-gradient(1px 1px at 23% 69%, #fff 99%, transparent),
+        radial-gradient(1px 1px at 58% 82%, #fff 99%, transparent);
+      background-size: 420px 360px;
+    }
+
+    .hero::after {
+      background: linear-gradient(90deg, rgba(3,4,8,.35), transparent 75%);
+    }
+
+    .hero-inner {
+      display: grid;
+      min-height: 100svh;
+      grid-template-columns: 1fr 1.12fr;
+      align-items: center;
+      gap: 1rem;
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+
+    .hero-copy { position: relative; z-index: 1; }
+
+    .hero h1 {
+      max-width: 620px;
+      margin: 0;
+      font-size: clamp(3.2rem, 8vw, 7rem);
+      font-weight: 600;
+      letter-spacing: -.06em;
+      line-height: .98;
+    }
+
+    .hero h1 span {
+      display: block;
+      margin-top: .18em;
+      color: var(--accent);
+      font-size: .43em;
+      letter-spacing: .22em;
+    }
+
+    .hero-copy > p:not(.eyebrow) {
+      max-width: 420px;
+      margin: 1.5rem 0 0;
+      color: #c1c9d7;
+      font-size: clamp(1rem, 1.7vw, 1.2rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin-top: 2rem;
+    }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: .7rem;
+      padding: .75rem 1.25rem;
+      border: 1px solid rgba(234, 241, 252, .75);
+      color: var(--ink);
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .button-primary {
+      color: #080b12;
+      border-color: var(--ink);
+      background: var(--ink);
+    }
+
+    .button:hover,
+    .button:focus-visible { border-color: var(--accent); }
+
+    .button-primary:hover,
+    .button-primary:focus-visible { background: var(--accent); }
+
+    .vehicle-art {
+      width: min(100%, 560px);
+      justify-self: end;
+      filter: drop-shadow(0 30px 60px rgba(109, 158, 234, .18));
+    }
+
+    .scroll-note {
+      position: absolute;
+      right: 0;
+      bottom: 1.7rem;
+      left: 0;
+      color: #aab4c4;
+      font-size: .65rem;
+      letter-spacing: .22em;
+      text-align: center;
+    }
+
+    /* 關於我區以文字與軌道圖像並列，平衡個人敘述和視覺留白。 */
+    .mission {
+      position: relative;
+      padding-block: clamp(6rem, 13vw, 12rem);
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 85% 50%, rgba(35, 57, 92, .3), transparent 42%),
+        var(--night);
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: clamp(2rem, 8vw, 8rem);
+    }
+
+    .orbit-card {
+      position: relative;
+      display: grid;
+      min-height: 320px;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(circle at 50% 52%, rgba(91, 133, 201, .32), transparent 27%),
+        linear-gradient(145deg, #111a29, #080b12 75%);
+    }
+
+    .orbit-card svg { width: min(82%, 350px); }
+
+    .mission-note {
+      position: absolute;
+      right: 1.2rem;
+      bottom: 1rem;
+      left: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      color: var(--muted);
+      font-size: .62rem;
+      letter-spacing: .12em;
+    }
+
+    /* 三個個人面向採同一組卡片格式，桌機並排、窄螢幕直向閱讀。 */
+    .specs {
+      padding-block: clamp(5rem, 10vw, 9rem);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #080b11;
+    }
+
+    .specs-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .specs-heading p {
+      max-width: 340px;
+      margin: 0;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      border: 1px solid var(--line);
+      background: var(--line);
+    }
+
+    .spec {
+      min-height: 265px;
+      padding: 1.7rem 1.5rem;
+      background: #080b11;
+    }
+
+    .spec-value {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 500;
+      letter-spacing: -.06em;
+      line-height: 1.1;
+    }
+
+    .spec-label {
+      display: block;
+      margin-top: .8rem;
+      color: var(--muted);
+      font-size: .68rem;
+      letter-spacing: .16em;
+    }
+
+    .spec-copy {
+      margin: 1rem 0 0;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    /* 收尾區用簡短的個人準則作結，不添加未提供的聯絡方式。 */
+    .closing {
+      position: relative;
+      padding-block: clamp(7rem, 16vw, 14rem);
+      overflow: hidden;
+      text-align: center;
+      background:
+        radial-gradient(ellipse at 50% 100%, rgba(47, 74, 117, .36), transparent 52%),
+        var(--night);
+    }
+
+    .closing .section-title,
+    .closing .section-copy { margin-inline: auto; }
+
+    .closing .actions { justify-content: center; }
+
+    .principles {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: .65rem;
+      margin-top: 2rem;
+    }
+
+    .principles span {
+      padding: .5rem .85rem;
+      border: 1px solid var(--line);
+      color: #d7dce6;
+      font-size: .7rem;
+      letter-spacing: .08em;
+    }
+
+    /* 頁尾簡潔標示個人介紹頁的性質。 */
+    .site-footer {
+      padding-block: 1.5rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .7rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .site-footer p { margin: 0; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 4px;
+    }
+
+    /* 小螢幕改成單欄，導覽收進漢堡選單，並避免固定寬度造成水平捲軸。 */
+    @media (max-width: 760px) {
+      .wrap { width: min(var(--content), calc(100% - 2rem)); }
+      .nav { min-height: 66px; }
+      .menu-toggle { display: block; }
+
+      .nav-links {
+        position: absolute;
+        top: 66px;
+        right: 1rem;
+        left: 1rem;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: .5rem;
+        border: 1px solid var(--line);
+        background: rgba(7, 10, 16, .97);
+      }
+
+      .nav-links[data-open="true"] { display: flex; flex-direction: column; }
+
+      .nav-links a {
+        padding: .9rem 1rem;
+        font-size: .78rem;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        align-content: center;
+        padding-top: 7rem;
+        padding-bottom: 7rem;
+      }
+
+      .hero-copy { padding-top: 1.5rem; }
+      .vehicle-art { width: min(86%, 390px); justify-self: center; margin-top: -1rem; }
+      .mission-grid { grid-template-columns: 1fr; }
+      .orbit-card { min-height: 270px; }
+      .specs-heading { align-items: start; flex-direction: column; }
+      .spec-grid { grid-template-columns: 1fr; }
+      .spec { min-height: auto; padding: 1.4rem 1rem; }
+      .footer-inner { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 420px) {
+      .hero h1 { font-size: clamp(2.9rem, 16vw, 4rem); }
+      .actions { align-items: stretch; flex-direction: column; }
+      .actions .button { width: 100%; }
+      .scroll-note { font-size: .58rem; }
+    }
+
+    /* 僅在使用者未要求減少動態時啟用淡入與平滑捲動；預設仍完整顯示內容。 */
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity .7s ease, transform .7s ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      .site-header {
+        transition: background-color .25s ease, border-color .25s ease, backdrop-filter .25s ease;
+      }
+
+      .site-header.is-scrolled {
+        border-color: var(--line);
+        background: rgba(5, 7, 12, .78);
+        backdrop-filter: blur(16px);
+      }
+
+      .button { transition: color .2s ease, background-color .2s ease, border-color .2s ease; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要內容</a>
+
+  <!-- 導覽列以姓名縮寫作為識別，連結至個人介紹的不同段落。 -->
+  <header class="site-header" id="top">
+    <nav class="nav wrap" aria-label="主要導覽">
+      <a class="brand" href="#top" aria-label="呂理聖，回到首頁">
+        <span class="brand-mark" aria-hidden="true">LL</span>
+        <span>呂理聖</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="開啟導覽選單" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links" data-open="false">
+        <a href="#about">關於我</a>
+        <a href="#interests">興趣與實踐</a>
+        <a href="#principles">行動準則</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- 首屏以姓名、身分與原創軌道圖形介紹主角，保留太空任務的沉浸氛圍。 -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner wrap">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">個人檔案 / MEDICINE · MAKING · MOVEMENT</p>
+          <h1 id="hero-title">呂理聖<span>醫學系學生・探索者</span></h1>
+          <p>你好，我是呂理聖。我的生活在科學理性與手作創作之間切換：用第一性原理拆解問題，也用雙手把想法做成真實體驗。</p>
+          <div class="actions">
+            <a class="button button-primary" href="#about">認識我 <span aria-hidden="true">↘</span></a>
+            <a class="button" href="#interests">探索我的座標</a>
+          </div>
+        </div>
+        <svg class="vehicle-art reveal" viewBox="0 0 520 580" role="img" aria-labelledby="profile-art-title profile-art-desc">
+          <title id="profile-art-title">呂理聖的個人軌道圖像</title>
+          <desc id="profile-art-desc">以姓名縮寫、行星和軌道線構成的原創太空主題圖像，象徵理性探索與多元興趣。</desc>
+          <defs>
+            <radialGradient id="glow">
+              <stop stop-color="#8ab9ff" stop-opacity=".4"/>
+              <stop offset="1" stop-color="#8ab9ff" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="profile-orb" x1="0" x2="1" y1="0" y2="1">
+              <stop stop-color="#dbeaff"/>
+              <stop offset=".48" stop-color="#8eb8ed"/>
+              <stop offset="1" stop-color="#324b70"/>
+            </linearGradient>
+          </defs>
+          <circle cx="260" cy="280" r="220" fill="url(#glow)"/>
+          <ellipse cx="260" cy="280" rx="214" ry="82" fill="none" stroke="#a9c7f5" stroke-opacity=".42" stroke-width="1.5" transform="rotate(-28 260 280)"/>
+          <ellipse cx="260" cy="280" rx="174" ry="126" fill="none" stroke="#d4e4ff" stroke-opacity=".2" stroke-width="1" transform="rotate(34 260 280)"/>
+          <circle cx="91" cy="223" r="4" fill="#d9e8ff"/>
+          <circle cx="435" cy="354" r="3" fill="#d9e8ff"/>
+          <circle cx="260" cy="280" r="112" fill="url(#profile-orb)" fill-opacity=".2" stroke="#dceaff" stroke-opacity=".6"/>
+          <circle cx="260" cy="280" r="96" fill="#0b1220" fill-opacity=".68" stroke="#dceaff" stroke-opacity=".2"/>
+          <text x="260" y="302" fill="#f4f6fb" font-family="sans-serif" font-size="68" font-weight="600" letter-spacing="-5" text-anchor="middle">LL</text>
+          <text x="260" y="337" fill="#bfd7fa" font-family="sans-serif" font-size="11" letter-spacing="4" text-anchor="middle">PERSONAL ORBIT</text>
+          <circle cx="331" cy="153" r="14" fill="#a9ceff" fill-opacity=".84"/>
+          <circle cx="331" cy="153" r="22" fill="none" stroke="#d4e4ff" stroke-opacity=".4"/>
+        </svg>
+      </div>
+      <p class="scroll-note" aria-hidden="true">向下捲動　・　探索我的座標</p>
+    </section>
+
+    <!-- 個人簡介說明學習方式與創作性格；右側圖像作為視覺化的個人座標。 -->
+    <section class="mission" id="about" aria-labelledby="mission-title">
+      <div class="mission-grid wrap">
+        <div class="reveal">
+          <p class="eyebrow">01 / 關於我</p>
+          <h2 class="section-title" id="mission-title">在精準思考與自由創作之間。</h2>
+          <p class="section-copy">我目前就讀醫學系，平時投入微生物學、有機化學與生物統計等領域。面對複雜問題，我習慣從第一性原理出發，理解生化機轉、數據與邏輯推論背後的結構；而在課業之外，我也享受把想法化為教具、活動與真實體驗。</p>
+        </div>
+        <div class="orbit-card reveal">
+          <svg viewBox="0 0 360 260" role="img" aria-labelledby="orbit-title orbit-desc">
+            <title id="orbit-title">個人興趣與專業的交會</title>
+            <desc id="orbit-desc">代表學習、創作與行動的三個節點，沿著同一條軌道彼此連結。</desc>
+            <ellipse cx="180" cy="130" rx="139" ry="66" fill="none" stroke="#c6dcff" stroke-opacity=".42" stroke-dasharray="4 7" transform="rotate(-16 180 130)"/>
+            <ellipse cx="180" cy="130" rx="104" ry="96" fill="none" stroke="#dceaff" stroke-opacity=".16" transform="rotate(34 180 130)"/>
+            <circle cx="180" cy="130" r="42" fill="#8fc2ff" fill-opacity=".2" stroke="#c9e2ff" stroke-opacity=".6"/>
+            <text x="180" y="137" fill="#f4f6fb" font-family="sans-serif" font-size="22" font-weight="600" text-anchor="middle">LS</text>
+            <circle cx="76" cy="110" r="11" fill="#8fc2ff"/>
+            <circle cx="254" cy="57" r="8" fill="#d8e8ff"/>
+            <circle cx="276" cy="199" r="9" fill="#7298cc"/>
+            <path d="M83 106l55-11m125-30-46 39m54 86-52-43" stroke="#d4e4ff" stroke-opacity=".56" stroke-width="1"/>
+            <circle cx="104" cy="201" r="2" fill="#fff"/>
+            <circle cx="305" cy="91" r="2" fill="#fff"/>
+          </svg>
+          <div class="mission-note"><span>MEDICINE / MAKING</span><span>呂理聖</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 三張卡片整理學術、生活與社群實踐，讓內容易於掃讀並保持一致層次。 -->
+    <section class="specs" id="interests" aria-labelledby="specs-title">
+      <div class="wrap">
+        <div class="specs-heading reveal">
+          <div>
+            <p class="eyebrow">02 / 興趣與實踐</p>
+            <h2 class="section-title" id="specs-title">三個座標，拼出我的日常。</h2>
+          </div>
+          <p>從專業學習到社群參與，我喜歡把好奇心轉化成持續行動。</p>
+        </div>
+        <div class="spec-grid reveal">
+          <div class="spec">
+            <span class="spec-value">01</span>
+            <span class="spec-label">專業與學術</span>
+            <p class="spec-copy">專注醫學領域，從微生物學、有機化學到生物統計，習慣以第一性原理拆解問題，掌握生化機轉、數據與邏輯推論的底層結構。</p>
+          </div>
+          <div class="spec">
+            <span class="spec-value">02</span>
+            <span class="spec-label">運動與生活</span>
+            <p class="spec-copy">保持規律健身與重訓，重視動作軌跡與肌肉感受度；生活上偏好乾淨、有條理，也兼顧永續理念的解決方案。</p>
+          </div>
+          <div class="spec">
+            <span class="spec-value">03</span>
+            <span class="spec-label">社群與實踐</span>
+            <p class="spec-copy">參與營隊籌備與活動設計，曾設計結合道教元素的教具與實境解謎，也投入偏鄉社區服務，喜歡讓創意落地並與人建立連結。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 收尾以個人原則呈現自我要求，並將「西格瑪」概念轉成自然易讀的自我描述。 -->
+    <section class="closing" id="principles" aria-labelledby="closing-title">
+      <div class="wrap reveal">
+        <p class="eyebrow">03 / 行動準則</p>
+        <h2 class="section-title" id="closing-title">用自己的節奏，持續前進。</h2>
+        <p class="section-copy">我認同西格瑪所代表的獨立與自律。無論在學業、健身或藝術創作中，我都重視獨立思考、細節與結構化實踐，持續把每件事做到完整。</p>
+        <div class="principles" aria-label="個人行動準則">
+          <span>獨立思考</span>
+          <span>細節敏感</span>
+          <span>持續實踐</span>
+        </div>
+        <div class="actions">
+          <a class="button button-primary" href="#top">回到首頁 <span aria-hidden="true">↑</span></a>
+          <a class="button" href="#interests">重看興趣與實踐</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 頁尾保留個人名稱與回到頂端連結，不虛構聯絡資訊。 -->
+  <footer class="site-footer">
+    <div class="footer-inner wrap">
+      <p>呂理聖｜個人介紹</p>
+      <p>以科學思考探索世界，以創意實踐連結生活。</p>
+      <a href="#top">回到頂端 ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // 手機選單同步 aria-expanded 狀態，並在選取頁面連結後自動收合。
+    const menuButton = document.querySelector(".menu-toggle");
+    const navLinks = document.querySelector(".nav-links");
+    const header = document.querySelector(".site-header");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      menuButton.setAttribute("aria-label", isOpen ? "開啟導覽選單" : "關閉導覽選單");
+      navLinks.dataset.open = String(!isOpen);
+    });
+
+    navLinks.addEventListener("click", event => {
+      if (event.target.closest("a")) {
+        menuButton.setAttribute("aria-expanded", "false");
+        menuButton.setAttribute("aria-label", "開啟導覽選單");
+        navLinks.dataset.open = "false";
+      }
+    });
+
+    // 滾動狀態只改變導覽列底色，不干擾頁面內容或鍵盤操作。
+    const updateHeader = () => header.classList.toggle("is-scrolled", window.scrollY > 24);
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    // 支援 IntersectionObserver 的瀏覽器才啟用進場效果；否則內容維持可見。
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>
